@@ -7,12 +7,16 @@ router.post('/', function(req, res, next) {
 
   cielo.compra(req.body).then((result)=>{
 
-    // res.send(result)
-  cielo.captura(result.Payment.PaymentId).then((result)=>{
+    const PaymentId = result.Payment.PaymentId
+
+  cielo.captura(PaymentId).then((result)=>{
+    
     if(result.Status == 2){
       res.status(201).send({
         "Status": "Sucesso",
-        "Message": "Compra realizada com sucesso"
+        "Message": "Compra realizada com sucesso",
+        // Eu preciso returnar meu paymentID para poder usar na requisição de status como compra_id
+        "Compra_id":PaymentId
       })
     }
     else{
@@ -28,13 +32,38 @@ router.post('/', function(req, res, next) {
   })
   })
 
-
   
 });
 
 /* GET status de compra */
 router.get('/:compra_id/status', function(req, res, next) {
-  res.send('Rodando status..');
+  cielo.consulta(req.params.compra_id)
+  .then((result) => {
+    let message = {}
+    switch(result.Payment.Status){
+      case 1:
+        message = {
+          'Status': 'Pagamento autorizado'
+        };
+        break;
+      case 2:
+        message = {
+          'Status': 'Pagamento realizado'
+        };
+        break;
+      case 12:
+        message = {
+          'Status': 'Aguardando Status de instituição financeira'
+        };
+        break;
+      default:
+        message = {
+          'Status': 'Falha no pagamento'
+      };
+    }
+
+  res.send(message)
+  })
 
 });
 

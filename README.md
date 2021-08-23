@@ -11,6 +11,47 @@ The project consist in the use of express generator to create the API and the us
 - pug: 2.0.0-beta11
 
 
+
+## The API
+
+You have to use the postman to send the request to the API:
+
+1) The post method (purchasing):
+
+On the request body, put: 
+{
+   "MerchantOrderId":"2014111703",
+   "Customer":{
+      "Name":"Comprador crédito simples"
+   },
+   "Payment":{
+     "Type":"CreditCard",
+     "Amount":15700,
+     "Installments":1,
+     "SoftDescriptor":"123456789ABCD",
+     "CreditCard":{
+         "CardNumber":"1234123412341231",
+         "Holder":"Teste Holder",
+         "ExpirationDate":"12/2030",
+         "SecurityCode":"123",
+         "Brand":"Visa",
+         "CardOnFile":{
+            "Usage": "Used",
+            "Reason":"Unscheduled"
+         }
+     },
+     "IsCryptoCurrencyNegotiation": true
+   }
+}
+
+Then, send the post request...
+![post]('./post.png')
+
+2) The get method (purchase status):
+You need to put the 'Compra_id' in the status request at the value of compra_id on the url.
+
+![get]('./get.png')
+
 ## How to start the project 
 
 You need to install all the dependencies into the project folder with the comand below:
