@@ -19,6 +19,8 @@ You have to use the postman to send the request to the API:
 1) The post method (purchasing):
 
 On the request body, put: 
+
+```
 {
    "MerchantOrderId":"2014111703",
    "Customer":{
@@ -43,14 +45,14 @@ On the request body, put:
      "IsCryptoCurrencyNegotiation": true
    }
 }
-
+```
 Then, send the post request...
-![post]('./post.png')
+![post](./post.png)
 
 2) The get method (purchase status):
 You need to put the 'Compra_id' in the status request at the value of compra_id on the url.
 
-![get]('./get.png')
+![get](./get.png)
 
 ## How to start the project 
 
