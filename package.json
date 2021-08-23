@@ -1,0 +1,16 @@
+{
+  "name": "consumo-api-cielo-1",
+  "version": "1.0.0",
+  "description": "Integração com API da cielo utilizando node-fetch",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "integração",
+    "api",
+    "node-fetch-cielo"
+  ],
+  "author": "Thállen Kettyllen",
+  "license": "ISC"
+}
